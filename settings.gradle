@@ -1,1 +1,2 @@
-include ':app'
+include ':app', '..:Spatialite-Database-Driver:spatialite-db-driver'
+//project(':spatialite-android-lib').projectDir = new File(settingsDir,'../spatialite-android-lib')

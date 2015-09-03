@@ -1,9 +1,13 @@
 package pimp.hellotospatialite;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import pimp.spatialite_android_lib.SQLite.Database;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +15,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Database db = new Database();
     }
 
     @Override
@@ -33,5 +39,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void runTests(View view) {
+
+        TextView textView = (TextView) findViewById(R.id.communicate);
+        textView.setText("testing123");
+
+        StringBuilder sb = new StringBuilder();
+        GeoDatabaseHandler gdbHandler = new GeoDatabaseHandler(this, sb);
+
     }
 }
