@@ -2,7 +2,7 @@ package pimp.hellotospatialite;
 
 import android.content.Context;
 
-import pimp.spatialite_android_lib.SQLite.Database;
+//import pimp.spatialite_database_driver.*;
 
 /**
  * Created by kristina on 9/2/15.
