@@ -2,10 +2,7 @@ package pimp.hellotospatialite;
 
 import android.content.Context;
 
-//import pimp.spatialite_database_driver.*;
-
-//import jsqlite;
-//import pimp.spatialite_database_driver.jsqlite.
+import jsqlite.Database;
 import pimp.spatialite_database_driver.FunConstants;
 
 /**
@@ -20,5 +17,9 @@ public class GeoDatabaseHandler {
 
         Database db = new Database();
 
+    }
+
+    public String getSomeResult() {
+        return "some result!";
     }
 }

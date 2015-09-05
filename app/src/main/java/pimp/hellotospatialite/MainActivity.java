@@ -7,8 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import pimp.spatialite_android_lib.SQLite.Database;
-
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -16,7 +14,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Database db = new Database();
     }
 
     @Override
@@ -49,5 +46,6 @@ public class MainActivity extends ActionBarActivity {
         StringBuilder sb = new StringBuilder();
         GeoDatabaseHandler gdbHandler = new GeoDatabaseHandler(this, sb);
 
+        String foo = gdbHandler.getSomeResult();
     }
 }
