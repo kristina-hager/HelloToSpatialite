@@ -40,12 +40,12 @@ public class MainActivity extends ActionBarActivity {
 
     public void runTests(View view) {
 
-        TextView textView = (TextView) findViewById(R.id.communicate);
-        textView.setText("testing123");
-
         StringBuilder sb = new StringBuilder();
         GeoDatabaseHandler gdbHandler = new GeoDatabaseHandler(this, sb);
 
         String foo = gdbHandler.getSomeResult();
+
+        TextView textView = (TextView) findViewById(R.id.communicate);
+        textView.setText(foo);
     }
 }
