@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.IOException;
+
 public class MainActivity extends ActionBarActivity {
 
     @Override
@@ -41,7 +43,12 @@ public class MainActivity extends ActionBarActivity {
     public void runTests(View view) {
 
         StringBuilder sb = new StringBuilder();
-        GeoDatabaseHandler gdbHandler = new GeoDatabaseHandler(this, sb);
+        GeoDatabaseHandler gdbHandler = null;
+        try {
+            gdbHandler = new GeoDatabaseHandler(this, sb);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         String foo = gdbHandler.getSomeResult();
 
