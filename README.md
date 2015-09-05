@@ -12,7 +12,7 @@ Therefore, you will also need to get a copy of that lib:
 
 This example assumes you've put the directory for 'Spatialite-Database-Driver' in the same directory as 'HelloToSpatialite'.
 
-# Changes to default Android project to enable usage of [Spatialite-Database-Driver](https://github.com/kristina-hager/Spatialite-Database-Driver)
+# Changes to enable usage of [Spatialite-Database-Driver](https://github.com/kristina-hager/Spatialite-Database-Driver)
 
 [app/build.gradle](https://github.com/kristina-hager/HelloToSpatialite/blob/master/app/build.gradle)
 - Add dependency on Spatialite-Database-Driver
