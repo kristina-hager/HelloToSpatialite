@@ -6,8 +6,9 @@ import android.util.Log;
 import java.io.File;
 import java.io.IOException;
 
-import jsqlite.*;
-import pimp.spatialite_database_driver.FunConstants;
+import jsqlite.Database;
+import jsqlite.Stmt;
+import pimp.spatialite_database_driver.Credits;
 
 /**
  * Created by kristina on 9/2/15.
@@ -24,10 +25,6 @@ public class GeoDatabaseHandler {
 
 
     public GeoDatabaseHandler( Context context, StringBuilder sb ) throws IOException {
-
-        //example of using 'just java' from loaded library
-        FunConstants foo = new FunConstants();
-        int temp = foo.getFOOBAR();
 
         File storageDir = new File(DB_PATH);
         File cacheDatabase = new File(storageDir, DB_NAME);
@@ -50,7 +47,7 @@ public class GeoDatabaseHandler {
 
     }
 
-    public String getSomeResult() {
+    public String showVersionsAndCredits() {
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Checking installed versions of spatialite components..\n");
@@ -73,9 +70,14 @@ public class GeoDatabaseHandler {
                 stringBuilder.append("\t").append("GEOS_VERSION: " + stmt01.column_string(0));
                 stringBuilder.append("\n");
             }
+            stringBuilder.append("\n");
         } catch (jsqlite.Exception e) {
             e.printStackTrace();
         }
+
+        stringBuilder.append("This code relies on open source spatialite:\n");
+        stringBuilder.append(new Credits().getCredits());
+        stringBuilder.append("\n");
 
         stringBuilder.append("done..\n");
         return stringBuilder.toString();

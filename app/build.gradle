@@ -2,6 +2,7 @@ import com.android.build.gradle.tasks.PackageApplication
 
 apply plugin: 'com.android.application'
 
+//NOTE: below 'task' lines are added from default gradle template
 task copyNativeLibs(type: Copy) {
     from(new File(project(':..:Spatialite-Database-Driver:spatialite-db-driver').projectDir, 'src/main/java/jniLibs')) {
         include 'armeabi/libjsqlite.so'
@@ -46,5 +47,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.1'
+    //NOTE: add dependency on library/module
     compile project(':..:Spatialite-Database-Driver:spatialite-db-driver')
 }

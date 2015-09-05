@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
             e.printStackTrace();
         }
 
-        String foo = gdbHandler.getSomeResult();
+        String foo = gdbHandler.showVersionsAndCredits();
 
         TextView textView = (TextView) findViewById(R.id.communicate);
         textView.setText(foo);
