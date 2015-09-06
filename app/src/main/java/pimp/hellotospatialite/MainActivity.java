@@ -12,11 +12,18 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private GeoDatabaseHandler gdbHandler;
+    private TextView communicateTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        communicateTextView = (TextView) findViewById(R.id.communicate);
+
+        //Note: GeoDatabaseHandler here isn't doing too much work since this is a simple example
+        // if in your app, copying the DB and/or doing queries requires a lot of processing time
+        //then you probably want to do this in a thread.
         try {
             gdbHandler = new GeoDatabaseHandler(this);
         } catch (IOException e) {
@@ -54,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getVersionInfo(View view) {
-        TextView textView = (TextView) findViewById(R.id.communicate);
-        textView.setText(gdbHandler.showVersionsAndCredits());
+        if (communicateTextView != null) communicateTextView.setText(gdbHandler.showVersionsAndCredits());
     }
 
     public void runSimpleTest(View view) {
-        TextView textView = (TextView) findViewById(R.id.communicate);
-        textView.setText(gdbHandler.queryTableSimple());
+        if (communicateTextView != null) communicateTextView.setText(gdbHandler.queryTableSimple());
+    }
+
+    public void runPointInPolygon(View view) {
+        if (communicateTextView != null) communicateTextView.setText(gdbHandler.queryPointInPolygon());
     }
 }

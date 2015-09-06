@@ -20,10 +20,17 @@ public class GeoDatabaseHandler {
     private static final String TAG = "GEODBH";
     private static final String TAG_SL = TAG + "_JSQLITE";
 
-    //default android path to app database
-    public static String DB_PATH = "/data/data/pimp.hellotospatialite/databases";
+    //default android path to app database internal storage
+    private static String DB_PATH = "/data/data/pimp.hellotospatialite/databases";
+
+    //see below for explanation of SRID constants and source of database
+    //https://github.com/kristina-hager/spatialite-tools-docker
     //the name of the db, also in res/raw
-    public static String DB_NAME = "city_districts.sqlite";
+    private static String DB_NAME = "city_districts.sqlite";
+
+    //constants related to source database and GPS SRID
+    private static final int GPS_SRID = 4326;
+    private static final int SOURCE_DATA_SRID = 2277;
 
     private Database spatialiteDb;
 
@@ -85,7 +92,7 @@ public class GeoDatabaseHandler {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("query districts table..");
 
-        String query = "SELECT * from districts order by single_mem";
+        String query = "select * from districts order by single_mem";
         stringBuilder.append("Execute query: ").append(query).append("\n");
 
         try {
@@ -105,7 +112,6 @@ public class GeoDatabaseHandler {
         stringBuilder.append("done\n");
 
         return stringBuilder.toString();
-
     }
 
     public String showVersionsAndCredits() {
@@ -142,6 +148,56 @@ public class GeoDatabaseHandler {
         stringBuilder.append("\n");
 
         stringBuilder.append("done..\n");
+
+        return stringBuilder.toString();
+    }
+
+    public String queryPointInPolygon() {
+
+        //just a hard-coded GPS point
+        String gpsPoint = "POINT(-97.837543 30.418986)";
+
+        String query = "select * from districts where within("
+                + "ST_Transform(GeomFromText('"
+                + gpsPoint + "', " + GPS_SRID
+                + "), " + SOURCE_DATA_SRID + "),districts.Geometry);";
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("issue point in polygon query on " + gpsPoint + " ..");
+        stringBuilder.append("Execute query: ").append(query).append("\n\n");
+
+        try {
+            Stmt stmt = spatialiteDb.prepare(query);
+
+            Log.i(TAG, "result column count: " + stmt.column_count());
+
+            //in my example, num columns is 9
+            //I don't know if minus 1 is always needed here
+            int maxColumns = stmt.column_count() - 1;
+
+            for (int i = 0; i < maxColumns; i++) {
+                stringBuilder.append(stmt.column_name(i)).append(" | ");
+            }
+            stringBuilder.append("\n--------------------------------------------\n");
+
+
+            int rowIndex = 0;
+            while (stmt.step()) {
+                stringBuilder.append("\t");
+                for (int i = 0; i < maxColumns; i++) {
+                    stringBuilder.append(stmt.column_string(i)).append(" | ");
+                }
+                stringBuilder.append("\n");
+
+                if (rowIndex++ > 10) break;
+            }
+            stringBuilder.append("\t...");
+            stmt.close();
+        } catch (jsqlite.Exception e) {
+            Log.e(TAG_SL,e.getMessage());
+        }
+
+        stringBuilder.append("\ndone\n");
 
         return stringBuilder.toString();
     }

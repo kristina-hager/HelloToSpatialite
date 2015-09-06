@@ -3,6 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="run_simple_test_button">run simple sql tests</string>
+    <string name="run_simple_test_button">run simple sql test</string>
     <string name="get_version_button">get version info</string>
+    <string name="run_point_in_polygon">Run point in polygon test</string>
 </resources>

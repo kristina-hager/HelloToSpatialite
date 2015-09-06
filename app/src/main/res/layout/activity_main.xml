@@ -33,4 +33,13 @@
         android:text="@string/run_simple_test_button"
         />
 
+    <Button
+        android:id="@+id/run_point_in_polygon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/run_tests"
+        android:onClick="runPointInPolygon"
+        android:text="@string/run_point_in_polygon"
+        />
+
 </RelativeLayout>
