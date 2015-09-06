@@ -2,8 +2,14 @@
 
 HelloToSpatialite is a relatively simple 'hello world' application illustrating the usage of [spatialite android](https://www.gaia-gis.it/fossil/libspatialite/wiki?name=splite-android).
 
-I am attempting to follow, as much as possible, the [original spatialite android tutorial] (https://www.gaia-gis.it/fossil/libspatialite/wiki?name=spatialite-android-tutorial)
-while making changes to bring this tutorial into the more recent Android Studio (v1.3) build environments.
+I started with the [original spatialite android tutorial] (https://www.gaia-gis.it/fossil/libspatialite/wiki?name=spatialite-android-tutorial)
+ making changes to bring this tutorial into the more recent Android Studio (v1.3) build environments.
+ 
+ I also deviated a bit from this example by:
+ - embedding the sqlite database in the application (versus loading on external storage)
+ - using a different sqlite database than in the tutorial
+  - See [my guide](https://github.com/kristina-hager/spatialite-tools-docker) on recreating the source data from this app
+ - using different SQL examples
 
 This example relies on the Android module [Spatialite-Database-Driver](https://github.com/kristina-hager/Spatialite-Database-Driver).
 Therefore, you will also need to get a copy of that lib:
