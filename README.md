@@ -10,6 +10,7 @@ I started with the [original spatialite android tutorial] (https://www.gaia-gis.
  - using a different sqlite database than in the tutorial
   - See [my guide](https://github.com/kristina-hager/spatialite-tools-docker) on recreating the source data from this app
  - using different SQL examples
+  - See [GeoDatabaseHandler.java](https://github.com/kristina-hager/HelloToSpatialite/blob/master/app/src/main/java/pimp/hellotospatialite/GeoDatabaseHandler.java) 
 
 This example relies on the Android module [Spatialite-Database-Driver](https://github.com/kristina-hager/Spatialite-Database-Driver).
 Therefore, you will also need to get a copy of that lib:
