@@ -11,10 +11,17 @@ import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
 
+    private GeoDatabaseHandler gdbHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            gdbHandler = new GeoDatabaseHandler(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -40,19 +47,19 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void runTests(View view) {
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        gdbHandler.cleanup();
+    }
 
-        StringBuilder sb = new StringBuilder();
-        GeoDatabaseHandler gdbHandler = null;
-        try {
-            gdbHandler = new GeoDatabaseHandler(this, sb);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        String foo = gdbHandler.showVersionsAndCredits();
-
+    public void getVersionInfo(View view) {
         TextView textView = (TextView) findViewById(R.id.communicate);
-        textView.setText(foo);
+        textView.setText(gdbHandler.showVersionsAndCredits());
+    }
+
+    public void runSimpleTest(View view) {
+        TextView textView = (TextView) findViewById(R.id.communicate);
+        textView.setText(gdbHandler.queryTableSimple());
     }
 }

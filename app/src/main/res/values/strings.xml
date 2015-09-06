@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="run_simple_test_button">run simple sql tests</string>
+    <string name="get_version_button">get version info</string>
 </resources>
