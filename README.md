@@ -26,6 +26,10 @@ This example assumes you've put the directory for 'Spatialite-Database-Driver' i
 
 `compile project(':..:Spatialite-Database-Driver:spatialite-db-driver')`
 
+[settings.gradle](https://github.com/kristina-hager/HelloToSpatialite/blob/master/settings.gradle)
+
+`include ':app', '..:Spatialite-Database-Driver:spatialite-db-driver'`
+
 - Add gradle code to build in shared objects
   -  code copied from  [geopaparazzi.app/build.gradle](https://github.com/geopaparazzi/geopaparazzi/blob/master/geopaparazzi.app/build.gradle)
 
